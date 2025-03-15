@@ -1,14 +1,5 @@
-# Use an official OpenJDK runtime as a parent image
-FROM openjdk:17-jdk-slim
-
-# Set the working directory
-WORKDIR /app
-
-# Copy the built JAR file from target/ directory
+FROM eclipse-temurin:17-jdk-alpine
+VOLUME /tmp
 COPY target/*.jar app.jar
-
-# Expose the application port (change if needed)
+ENTRYPOINT ["java","-jar","/app.jar"]
 EXPOSE 8080
-
-# Run the application
-CMD ["java", "-jar", "app.jar"]
